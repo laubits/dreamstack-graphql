@@ -241,6 +241,10 @@ This repository is part of the TELOS DreamStack Project which provides set of gu
 
 The code style convention aims to maximize reusability and facilitate collaboration. We have chosen the stack carefully so that it allows us to write robust and performant applications with more concise and readable code.
 
+## Contributing
+
+Read the [contributing guidelines](https://developers.blockmatic.io) for details.
+
 ## Blockmatic
 
 Blockmatic is building robust ecosystem of people and tools for development of decentralized applications.
