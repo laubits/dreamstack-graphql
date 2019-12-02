@@ -46,7 +46,7 @@ If you are want to use multiple-instances/auto-scale, you will need to choose an
 1. Git clone this repo:
 
 ```
-$ git clone git@github.com:hasura/hasura-aws-stack.git
+$ git clone git@github.com:telosdreamstack/telos-hasura-aws-stack.git
 $ cd hasura-aws-stack
 $ # You are now in the project directory
 ```
