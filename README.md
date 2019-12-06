@@ -17,11 +17,42 @@
 
 # TELOS Hasura AWS Stack
 
-A realtime GraphQL development framework for TELOS dApps. 
+A realtime GraphQL development framework for TELOS dApps based on Hasura.io through demux pattern 
 
-_THIS IS A WORK IN PROGRESS_
+## Architecture
 
-Based on https://github.com/hasura/hasura-aws-stack
+This repository contains all infrastructure and necessary offchain backend services to run a demuxed graphQL graph for you TELOS application. 
+
+Block producers can offer this as a service. They just need to list accounts and actions.
+
+<center>
+ <img src='https://cdn-std.droplr.net/files/acc_635251/grkS32' style='max-width:600px'/>
+</center>
+
+## Services
+
+- Postgres Database for offchain data and deterministic onchain data replication ( demux pattern ).
+- Apollo GraphQL Gateway throug Apollo Federation ( single graph for clients ).
+- Demuxed Onchain GraphQL graph through Hasura. ( performant postgres/graphql )
+- Offchain custom mutations service(s) with Apollo.
+- NodeJS demux service. ( handles microforks )  Specific tech TBD: see Iris, Chronicle and DemuxJS.
+
+## Disclaimer
+
+This is a work in progress. Feel free to reach us out on telegram for clarifications.
+https://t.me/blockmatic
+
+## Features
+
+- [ ] Hasura GraphQL 
+- [ ] Apollo Gateway.
+- [ ] TypeScript.
+- [x] Blockmatic code conventions. ( functional, declarative )
+- [x] Pre-commit code quality git hooks with husky, prettier and eslint.
+- [ ] Infra as Code with Terragrunt.
+- [ ] Non relative (absolute) imports.
+- [ ] Non-regression testing framework.
+- ...
 
 ## Stack
 
