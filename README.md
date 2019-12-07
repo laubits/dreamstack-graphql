@@ -44,14 +44,17 @@ https://t.me/blockmatic
 
 ## Features
 
-- [x] Hasura GraphQL 
-- [ ] Apollo Gateway.
-- [ ] TypeScript.
-- [x] Blockmatic code conventions. ( functional, declarative )
+- [ ] Architectural Diagrams. Cloudcraft and others.
+- [ ] Fast deployment to AWS with Terragrunt. (Infra as Code) 
+- [ ] Real-time GraphQL gateway with subscriptions support.
+- [ ] Out-of-the-box TELOS -> Postgres demux service with microfork handling.
+- [x] Functional TypeScript.
+- [x] Blockmatic code conventions. ( functional, declarative, hooks )
 - [x] Pre-commit code quality git hooks with husky, prettier and eslint.
-- [ ] Infra as Code with Terragrunt.
+- [x] CSS-in-JS styling based on design system constraints with Theme UI.
 - [ ] Non relative (absolute) imports.
-- [ ] Non-regression testing framework.
+- [ ] Non-regression testing framework. ( blackbox testing )
+- [ ] Continuous integration and deployment scripts.
 - ...
 
 ## Stack
