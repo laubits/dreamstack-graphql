@@ -15,15 +15,15 @@
 	</a>
 </p>
 
-# TELOS Hasura AWS Stack
+# TELOS GraphQL Starter
 
-A realtime GraphQL development framework for TELOS dApps based on Hasura.io through demux pattern 
+A realtime GraphQL framework for TELOS dApps that leverages Hasura.io and Apollo through demux pattern.
 
 ## Architecture
 
 This repository contains all infrastructure and necessary offchain backend services to run a demuxed graphQL graph for you TELOS application. 
 
-Block producers can offer this as a service. They just need to list accounts and actions.
+Block producers can offer it as a service. They just need to list accounts and actions.
 
 <center>
  <img src='https://cdn-std.droplr.net/files/acc_635251/grkS32' style='max-width:600px'/>
@@ -44,7 +44,7 @@ https://t.me/blockmatic
 
 ## Features
 
-- [ ] Hasura GraphQL 
+- [x] Hasura GraphQL 
 - [ ] Apollo Gateway.
 - [ ] TypeScript.
 - [x] Blockmatic code conventions. ( functional, declarative )
