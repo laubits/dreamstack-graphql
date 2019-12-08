@@ -19,6 +19,12 @@
 
 A realtime GraphQL framework for TELOS dApps that leverages Hasura.io and Apollo through demux pattern.
 
+## TELOS
+
+Best in class C++ EOSIO protocol technology providing fast, scalable and eco-freindly blockchain augmented by a growing library of Telos services and innovations. Free accounts, work proposals, dapp grants, decentralized exchange, dstor, bancor protocol, telos community and foundation.
+
+[Learn more](https://docs.telosdreamstack.io/smart-contracts/telos-blockchain)
+
 ## Architecture
 
 This repository contains all infrastructure and necessary offchain backend services to run a demuxed graphQL graph for you TELOS application. 
@@ -40,7 +46,7 @@ Block producers can offer it as a service. They just need to list accounts and a
 ## Disclaimer
 
 This is a work in progress. Feel free to reach us out on telegram for clarifications.
-https://t.me/blockmatic
+https://t.me/telosdreamstack
 
 ## Features
 
