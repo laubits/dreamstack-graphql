@@ -17,7 +17,19 @@
 
 # TELOS GraphQL Starter
 
-A realtime GraphQL framework for TELOS dApps that leverages Hasura.io and Apollo through demux pattern.
+A realtime GraphQL framework for EOSIO dApps.
+
+## Features
+
+- Explorable on-chain data graph.
+- Realtime GraphQL subscription to blockchain state.
+- Realtime GraphQL subscription to blockchain actions.
+- Powerful querying, sorting and filtering.
+- Microfork handling on the backend, subscribe to state not to deltas.
+- Supports ad-hoc external graph stiching.
+- Supports ad-hoc offchain graphql resolvers.
+- Fast deployment to AWS. (Infra as Code).
+- Blockmatic code style conventions.
 
 ## TELOS
 
@@ -27,49 +39,59 @@ Best in class C++ EOSIO protocol technology providing fast, scalable and eco-fre
 
 ## Architecture
 
-This repository contains all infrastructure and necessary offchain backend services to run a demuxed graphQL graph for you TELOS application. 
-
-Block producers can offer it as a service. They just need to list accounts and actions.
-
 <center>
- <img src='https://cdn-std.droplr.net/files/acc_635251/grkS32' style='max-width:600px'/>
+  <img src='https://cdn-std.droplr.net/files/acc_635251/grkS32' style='max-width:600px'/>
 </center>
 
-## Services
+## Demux Pattern
 
-- Postgres Database for offchain data and deterministic onchain data replication ( demux pattern ).
-- Apollo GraphQL Gateway throug Apollo Federation ( single graph for clients ).
-- Demuxed Onchain GraphQL graph through Hasura. ( performant postgres/graphql )
-- Offchain custom mutations service(s) with Apollo.
-- NodeJS demux service. ( handles microforks )  Specific tech TBD: see Iris, Chronicle and DemuxJS.
+Demux is a backend infrastructure pattern for sourcing blockchain events to deterministically update queryable datastores and trigger side effects. 
+
+Taking inspiration from the [Flux Architecture](https://facebook.github.io/flux/docs/in-depth-overview.html#content) pattern and [Redux](https://github.com/reduxjs/redux/), Demux was born out of the following qualifications:
+
+1. A separation of concerns between how state exists on the blockchain and how it is queried by the client front-end
+1. Client front-end not solely responsible for determining derived, reduced, and/or accumulated state
+1. The ability for blockchain events to trigger new transactions, as well as other side effects outside of the blockchain
+1. The blockchain as the single source of truth for all application stat
+
+Learn more at https://github.com/EOSIO/demux-js.
+
+## GraphQL
+
+GraphQL provides a complete and understandable description of the data in your API, gives clients the power to ask for exactly what they need and nothing more, makes it easier to evolve APIs over time, and enables powerful developer tools.
+
+There are many reason for choosing GraphQL over other solutions, read [Top 5 Reasons to Use GraphQL](https://www.prisma.io/blog/top-5-reasons-to-use-graphql-b60cfa683511/).
+
+__Move faster with powerful developer tools__
+
+Know exactly what data you can request from your API without leaving your editor, highlight potential issues before sending a query, and take advantage of improved code intelligence. GraphQL makes it easy to build powerful tools like [GraphiQL](https://github.com/graphql/graphiql) by leveraging your API’s type system.
+
+Learn more at https://graphql.org & https://www.howtographql.com
+
+## Hasura Engine
+
+Hasura GraphQL engine automatically generates your GraphQL schema with powerful and perfomant CRUD and realtime subscriptions. 
+
+Learn more at https://hasura.io
+
+## Postgres
+
+PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+
+Learn more at https://www.postgresql.org
 
 ## Disclaimer
 
 This is a work in progress. Feel free to reach us out on telegram for clarifications.
 https://t.me/telosdreamstack
 
-## Features
-
-- [ ] Architectural Diagrams. Cloudcraft and others.
-- [ ] Fast deployment to AWS with Terragrunt. (Infra as Code) 
-- [ ] Real-time GraphQL gateway with subscriptions support.
-- [ ] Out-of-the-box TELOS -> Postgres demux service with microfork handling.
-- [x] Functional TypeScript.
-- [x] Blockmatic code conventions. ( functional, declarative, hooks )
-- [x] Pre-commit code quality git hooks with husky, prettier and eslint.
-- [x] CSS-in-JS styling based on design system constraints with Theme UI.
-- [ ] Non relative (absolute) imports.
-- [ ] Non-regression testing framework. ( blackbox testing )
-- [ ] Continuous integration and deployment scripts.
-- ...
-
 ## Stack
 
-- Hasura on ECS Fargate (auto-scale)
-- Aurora Postgres or RDS Postgres 
-- Lambdas for remote schemas and event triggers
-- Docker for local dev
-- CircleCI for CI/CD
+- Hasura on ECS Fargate (auto-scale).
+- Aurora Postgres or RDS Postgres.
+- Lambdas for remote schemas and event triggers.
+- Docker for local dev.
+- CircleCI for CI/CD.
 
 ## Setup Hasura on Fargate
 
