@@ -14,9 +14,29 @@ services:
     volumes:
       - eosio_data:/root/data-dir
       - ./services/eosio:/opt/application
-
-  # demux: 
-    # - Ubuntu, Chronicle ( DAC ( Telos, EOS, WAX ) ) --> transform --> event JSON --> Massive.js ( custom logic )     
+  
+  # Ubuntu, Chronicle ( DAC ( Telos, EOS, WAX ) ) --> transform --> event JSON --> Massive.js ( custom logic )     
+  demux:
+    container_name: telosdreamstack_demux
+    build:
+      context: ./services/demux
+      dockerfile: Dockerfile
+    image: telosdreamstack/demux
+    volumes:
+      - ./services/demux:/opt/application  # mount demux service folder
+      - /opt/application/node_modules # prevents host/container conflicts
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: postgres
+      DB_USER: user
+      DB_PASSWORD: pass
+      NODEOS_URI: http://eosio:8888
+      WAIT_HOSTS: eosio:8888, postgres:5432
+      WAIT_HOSTS_TIMEOUT: 60
+    depends_on:
+      - postgres
+      - eosio
 
   postgres:
     container_name: dreamstack_postgres
