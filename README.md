@@ -26,7 +26,7 @@ A realtime GraphQL framework for EOSIO dApps.
 - Realtime GraphQL subscription to blockchain actions.
 - Powerful querying, sorting and filtering.
 - Microfork handling on the backend, subscribe to state not to deltas.
-- Supports ad-hoc external graph stiching.
+- Supports ad-hoc external graph stitching.
 - Supports ad-hoc offchain graphql resolvers.
 - Fast deployment to AWS. (Infra as Code).
 - Blockmatic code style conventions.
