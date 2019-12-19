@@ -21,7 +21,7 @@ A realtime GraphQL framework for EOSIO dApps.
 
 ## Features
 
-- Explorable on-chain data graph.
+- Explorable data graph.
 - Realtime GraphQL subscription to blockchain state.
 - Realtime GraphQL subscription to blockchain actions.
 - Powerful querying, sorting and filtering.
@@ -108,8 +108,8 @@ If you are want to use multiple-instances/auto-scale, you will need to choose an
 1. Git clone this repo:
 
 ```
-$ git clone git@github.com:telosdreamstack/telos-hasura-aws-stack.git
-$ cd hasura-aws-stack
+$ git clone git@github.com:telosdreamstack/telos-graphql-starter.git
+$ cd telos-graphql-starter
 $ # You are now in the project directory
 ```
 
