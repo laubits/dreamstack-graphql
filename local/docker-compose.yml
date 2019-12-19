@@ -1,0 +1,49 @@
+version: '3.6'
+
+services:
+  eosio:
+    container_name: dreamstack_eosio
+    build:
+      context: ./services/eosio
+      dockerfile: Dockerfile
+    image: dreamstack/eosio
+    network_mode: host
+    environment:
+      DATA_DIR: /root/data-dir
+      CONFIG_DIR: /opt/application/config
+    volumes:
+      - eosio_data:/root/data-dir
+      - ./services/eosio:/opt/application
+
+  # demux: 
+    # - Ubuntu, Chronicle ( DAC ( Telos, EOS, WAX ) ) --> transform --> event JSON --> Massive.js ( custom logic )     
+
+  postgres:
+    container_name: dreamstack_postgres
+    image: postgres
+    restart: always
+    network_mode: host
+
+  graphql-engine:
+    container_name: dreamstack_graphql
+    image: hasura/graphql-engine:v1.0.0-alpha37
+    network_mode: host
+    depends_on:
+    - "postgres"
+    restart: always
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@localhost:5432/postgres
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "false" # set to "false" to disable console
+      ## uncomment next line to set an access key
+      # HASURA_GRAPHQL_ACCESS_KEY: mysecretaccesskey
+    env_file:
+      - event-triggers.env
+      - remote-schemas.env
+
+  volumes:
+    eosio_data:
+
+  networks:
+    default:
+      name: dreamstack
+
