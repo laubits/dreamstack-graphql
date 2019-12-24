@@ -15,7 +15,7 @@
 	</a>
 </p>
 
-# TELOS GraphQL Starter
+# DreamStack GraphQL Engine
 
 A realtime GraphQL framework for EOSIO dApps.
 
