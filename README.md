@@ -40,7 +40,7 @@ Best in class C++ EOSIO protocol technology providing fast, scalable and eco-fre
 ## Architecture
 
 <center>
-  <img src='https://cdn-std.droplr.net/files/acc_635251/grkS32' style='max-width:600px'/>
+  <img src='docs/DreamStack-Backend.svg' style='max-width:600px'/>
 </center>
 
 ## Demux Pattern
