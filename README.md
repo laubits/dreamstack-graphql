@@ -103,13 +103,17 @@ https://t.me/telosdreamstack
 
 If you are want to use multiple-instances/auto-scale, you will need to choose an ALB as the load balancer.
 
+A Terraform template used for provisioning web application stacks on AWS ECS Fargate 
+
+https://github.com/turnerlabs/terraform-ecs-fargate
+
 ## Local Dev
 
 1. Git clone this repo:
 
 ```
-$ git clone git@github.com:telosdreamstack/telos-graphql-starter.git
-$ cd telos-graphql-starter
+$ git clone git@github.com:telosdreamstack/dreamstack-graphql.git
+$ cd dreamstack-graphql
 $ # You are now in the project directory
 ```
 

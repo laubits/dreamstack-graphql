@@ -1,21 +1,22 @@
 version: '3.6'
 
 services:
-  eosio:
-    container_name: dreamstack_eosio
-    build:
-      context: ./services/eosio
-      dockerfile: Dockerfile
-    image: dreamstack/eosio
-    network_mode: host
-    environment:
-      DATA_DIR: /root/data-dir
-      CONFIG_DIR: /opt/application/config
-    volumes:
-      - eosio_data:/root/data-dir
-      - ./services/eosio:/opt/application
-  
-  # Ubuntu, Chronicle ( DAC ( Telos, EOS, WAX ) ) --> transform --> event JSON --> Massive.js ( custom logic )     
+  # optional local eosio with chronicle plugin
+  # eosio:
+  #   container_name: dreamstack_eosio
+  #   build:
+  #     context: ./services/eosio
+  #     dockerfile: Dockerfile
+  #   image: dreamstack/eosio
+  #   network_mode: host
+  #   environment:
+  #     DATA_DIR: /root/data-dir
+  #     CONFIG_DIR: /opt/application/config
+  #   volumes:
+  #     - eosio_data:/root/data-dir
+  #     - ./services/eosio:/opt/application
+
+  # Ubuntu, Chronicle ( DAC ( Telos, EOS, WAX ) ) --> transform --> event JSON --> Massive.js ( custom logic )
   demux:
     container_name: telosdreamstack_demux
     build:
@@ -31,12 +32,11 @@ services:
       DB_NAME: postgres
       DB_USER: user
       DB_PASSWORD: pass
-      NODEOS_URI: http://eosio:8888
-      WAIT_HOSTS: eosio:8888, postgres:5432
+      CHRONICLE_WS: wss://telos.spectrumeos.io/streaming
+      WAIT_HOSTS: postgres:5432
       WAIT_HOSTS_TIMEOUT: 60
     depends_on:
       - postgres
-      - eosio
 
   postgres:
     container_name: dreamstack_postgres
