@@ -7,8 +7,8 @@
     <script>
       const isProd = window.location.hostname.includes('graph.telosdreamstack');
       const graphqlEndpoint = isProd ?
-        'http://hasura.graph.telosdreamstack.io/v1/graphql' :
-        'http://mainnet.local.telosdreamstack.io/v1/graphql';
+      'http://mainnet.graph.telosdreamstack.io/v1/graphql' :
+      'http://hasura.local.telosdreamstack.io/v1/graphql';
 
       console.log(`graphqlEndpoint=${graphqlEndpoint}`);
 
