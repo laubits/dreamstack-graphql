@@ -1,0 +1,125 @@
+version: '3.7'
+
+services:
+  # producer:
+  #   image: dreamstack/producer
+  #   container_name: dreamstack_producer
+  #   build:
+  #     context: ./services/eosio
+  #     dockerfile: Dockerfile
+  #   network_mode: host
+  #   environment:
+  #     DATA_DIR: /root/data-dir
+  #     CONFIG_DIR: /opt/application/config
+  #   volumes:
+  #     - dreamstack_eosio:/root/data-dir
+  #     - ./services/eosio:/opt/application
+
+  # chronicle:
+  #   image: eostribe/chronicle
+  #   container_name: dreamstack_chronicle
+  #   volumes:
+  #     - ./chronicle:/opt/data
+  #   environment:
+  #     - DATA_DIR=./data
+  #     - MODE=scan
+  #     - HOST=HOST_NAME #ip address or hostname of nodeos with state-history plogin
+  #     - PORT=port_number #port number of state history plugin
+  #     - WS_HOST=HOST_NAME # ip address or hostname json's consumer
+  #     - WS_PORT=port_number # port number of json's consumer
+  #     - SKIP_BLOCK_EVENTS=false
+  #     - SKIP_TABLE_DELTAS=false
+  #     - SKIP_TRACES=false
+  #     - BIN_HEADER=false
+  #     - EXP_WS_PATH=/
+  #     - EXP_WS_MAX_QEUEU=10000
+  #     - IRREVERSIBLE_ONLY=false
+
+  postgres:
+    container_name: dreamstack_postgres
+    image: postgres
+    volumes:
+      - dreamstack_postgres:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dreamstack
+      POSTGRES_PASSWORD: pass
+      DB_NAME: dreamstack
+      DB_USER: dreamstack
+      DB_PASSWORD: pass
+      POSTGRES_DB: dreamstack
+
+  hasura:
+    container_name: dreamstack_hasura
+    image: hasura/graphql-engine:latest.cli-migrations
+    ports:
+      - '8085:8080'
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://dreamstack:pass@postgres:5432/dreamstack?sslmode=disable
+      HASURA_GRAPHQL_MIGRATIONS_DIR: /migrations
+      HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
+      # HASURA_GRAPHQL_ACCESS_KEY: mysecretaccesskey
+      HOST: hasura.local.telosdreamstack.io
+      VIRTUAL_HOST: hasura.local.telosdreamstack.io
+      VIRTUAL_PORT: 8080
+    volumes:
+      - ./services/hasura/migrations:/migrations  #  mount hasura migrations folder
+    depends_on:
+      - postgres
+    command:
+      - graphql-engine
+      - serve
+
+  graphiql:
+    container_name: dreamstack_graphiql
+    image: npalm/graphiql
+    ports:
+      - '4000:4000'
+    environment:
+      API_URL: http://hasura.local.telosdreamstack.io/v1/graphql
+      VIRTUAL_HOST: graphiql.local.telosdreamstack.io
+      VIRTUAL_PORT: 4000
+      WAIT_HOSTS: hasura:8080
+      WAIT_HOSTS_TIMEOUT: 60
+    depends_on:
+      - hasura
+
+  # rxdemux:
+  #   container_name: dreamstack_rxdemux
+  #   image: dreamstack/rxdemux
+  #   build:
+  #     context: ./services/rxdemux
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - ./services/demux:/opt/application  # mount demux service folder
+  #     - /opt/application/node_modules # prevents host/container conflicts
+  #   environment:
+  #     DB_HOST: postgres
+  #     DB_PORT: 5432
+  #     DB_NAME: postgres
+  #     DB_USER: user
+  #     DB_PASSWORD: pass
+  #     CHRONICLE_WS: wss://telos.spectrumeos.io/streaming
+  #     WAIT_HOSTS: postgres:5432
+  #     WAIT_HOSTS_TIMEOUT: 60
+  #   depends_on:
+  #     - postgres
+
+  nginx:
+    container_name: dreamstack_nginx
+    image: jwilder/nginx-proxy:alpine
+    ports:
+      - '80:80'
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./services/nginx/my_proxy.conf:/etc/nginx/conf.d/my_proxy.conf
+
+volumes:
+  # dreamstack_eosio:
+  dreamstack_postgres:
+
+networks:
+  default:
+    name: dreamstack
+
