@@ -4,6 +4,13 @@ import Helmet from 'react-helmet';
 import './App.css';
 import { updateGraphQLEndpoint } from '../Services/ApiExplorer/Actions';
 
+const isProd = window.location.hostname.includes('graph.telosdreamstack');
+const graphqlEndpoint = isProd ?
+  'http://mainnet.graph.telosdreamstack.io/v1/graphql' :
+  'http://hasura.local.telosdreamstack.io/v1/graphql';
+
+console.log(`LOGIN graphqlEndpoint=${graphqlEndpoint}`);
+
 class LoginComponent extends React.Component {
   constructor() {
     super();
@@ -14,6 +21,7 @@ class LoginComponent extends React.Component {
   }
   render() {
     const { dispatch } = this.props;
+    dispatch(updateGraphQLEndpoint(graphqlEndpoint));
     return (
       <div>
         <div className="loginWrapper">

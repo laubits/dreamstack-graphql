@@ -5,10 +5,13 @@
     <meta name="title" content="TELOS DreamStack GraphiQL Online" />
     <meta name="description" content="TELOS DreamStack GraphiQL Online" />
     <script>
-      const isProd = window.location.hostname.includes('graph.telosdreamstack')
+      const isProd = window.location.hostname.includes('graph.telosdreamstack');
       const graphqlEndpoint = isProd ?
-        'http://hasura.local.telosdreamstack.io/v1/graphql' :
-        'http://mainnet.graph.telosdreamstack.io/v1/graphql'
+        'http://hasura.graph.telosdreamstack.io/v1/graphql' :
+        'http://mainnet.local.telosdreamstack.io/v1/graphql';
+
+      console.log(`graphqlEndpoint=${graphqlEndpoint}`);
+
       window.__env = {
         graphqlEndpoint,
         headers: '',
