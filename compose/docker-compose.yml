@@ -59,7 +59,7 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://dreamstack:pass@postgres:5432/dreamstack?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /migrations
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
-      # HASURA_GRAPHQL_ACCESS_KEY: mysecretaccesskey
+      HASURA_GRAPHQL_ACCESS_KEY: dreamstacksecret
       HOST: hasura.local.telosdreamstack.io
       VIRTUAL_HOST: hasura.local.telosdreamstack.io
       VIRTUAL_PORT: 8080
@@ -73,34 +73,28 @@ services:
 
   graphiql:
     container_name: dreamstack_graphiql
-    image: dreamstack/graphiql
-    build:
-      context: ./services/graphiql
-      dockerfile: Dockerfile
+    image: telosdreamstack/graphiql
     ports:
       - '8084:8080'
     environment:
       GRAPHQL_ENDPOINT: http://hasura.local.telosdreamstack.io/v1/graphql
-      VIRTUAL_HOST: graphiql.local.telosdreamstack.io
+      VIRTUAL_HOST: graph.local.telosdreamstack.io
       VIRTUAL_PORT: 8080
       WAIT_HOSTS: hasura:8080
       WAIT_HOSTS_TIMEOUT: 60
     depends_on:
       - hasura
 
-  # graphiql:
-  #   container_name: dreamstack_graphiql
-  #   image: npalm/graphiql
-  #   ports:
-  #     - '4000:4000'
-  #   environment:
-  #     API_URL: ws://hasura.local.telosdreamstack.io/v1/graphql
-  #     VIRTUAL_HOST: graphiql.local.telosdreamstack.io
-  #     VIRTUAL_PORT: 4000
-  #     WAIT_HOSTS: hasura:8080
-  #     WAIT_HOSTS_TIMEOUT: 60
-  #   depends_on:
-  #     - hasura
+  pgweb:
+    container_name: dreamstack_pgweb
+    image: sosedoff/pgweb:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      DATABASE_URL: postgres://dreamstack:pass@postgres:5432/dreamstack?sslmode=disable
+      VIRTUAL_HOST: pgweb.local.telosdreamstack.io
+      VIRTUAL_PORT: 8081
 
   # rxdemux:
   #   container_name: dreamstack_rxdemux
