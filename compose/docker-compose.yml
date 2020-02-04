@@ -39,9 +39,9 @@ services:
     container_name: dreamstack_postgres
     image: postgres
     volumes:
-      - dreamstack_postgres:/var/lib/postgresql/data
+      - dreamstack_postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       POSTGRES_USER: dreamstack
       POSTGRES_PASSWORD: pass
@@ -59,7 +59,7 @@ services:
       HASURA_GRAPHQL_DATABASE_URL: postgres://dreamstack:pass@postgres:5432/dreamstack?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /migrations
       HASURA_GRAPHQL_ENABLE_CONSOLE: 'true' # set to "false" to disable console
-      HASURA_GRAPHQL_ACCESS_KEY: dreamstacksecret
+      # HASURA_GRAPHQL_ACCESS_KEY: mysecretaccesskey
       HOST: hasura.local.telosdreamstack.io
       VIRTUAL_HOST: hasura.local.telosdreamstack.io
       VIRTUAL_PORT: 8080
@@ -128,7 +128,7 @@ services:
 
 volumes:
   # dreamstack_eosio:
-  dreamstack_postgres:
+  dreamstack_postgres_data:
 
 networks:
   default:
