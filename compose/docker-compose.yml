@@ -37,7 +37,7 @@ services:
 
   postgres:
     container_name: dreamstack_postgres
-    image: postgres
+    image: postgres:12
     volumes:
       - dreamstack_postgres_data:/var/lib/postgresql/data
     ports:
