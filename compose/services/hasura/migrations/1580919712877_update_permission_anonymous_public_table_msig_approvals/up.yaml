@@ -1,0 +1,15 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - actor
+      - proposal_name
+      - proposer
+      - status
+      filter: {}
+      limit: null
+    role: anonymous
+    table:
+      name: msig_approvals
+      schema: public
+  type: create_select_permission

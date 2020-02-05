@@ -1,0 +1,7 @@
+- args:
+    name: msigs_proposals
+    new_name: msig_proposals
+    table:
+      name: accounts
+      schema: public
+  type: rename_relationship

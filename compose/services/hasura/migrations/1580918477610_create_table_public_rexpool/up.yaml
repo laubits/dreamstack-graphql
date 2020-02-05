@@ -1,0 +1,10 @@
+- args:
+    sql: CREATE TABLE "public"."rexpool"("total_lent" float8 NOT NULL, "total_unlent"
+      float8 NOT NULL, "total_rent" float8 NOT NULL, "total_lendable" float8 NOT NULL,
+      "total_rex" float8 NOT NULL, "namebid_proceeds" float8 NOT NULL, "loan_num"
+      integer NOT NULL, "id" serial NOT NULL, PRIMARY KEY ("id") );
+  type: run_sql
+- args:
+    name: rexpool
+    schema: public
+  type: add_existing_table_or_view

@@ -1,0 +1,6 @@
+- args:
+    relationship: msigs_proposals
+    table:
+      name: accounts
+      schema: public
+  type: drop_relationship

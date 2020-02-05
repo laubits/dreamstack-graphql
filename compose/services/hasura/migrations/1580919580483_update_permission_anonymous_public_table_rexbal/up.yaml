@@ -1,0 +1,16 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - matured_rex
+      - owner
+      - rex_balance
+      - rex_maturities
+      - vote_stake
+      filter: {}
+      limit: null
+    role: anonymous
+    table:
+      name: rexbal
+      schema: public
+  type: create_select_permission

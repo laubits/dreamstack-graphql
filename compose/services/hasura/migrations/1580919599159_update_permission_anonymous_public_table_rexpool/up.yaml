@@ -1,0 +1,19 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - id
+      - loan_num
+      - namebid_proceeds
+      - total_lendable
+      - total_lent
+      - total_rent
+      - total_rex
+      - total_unlent
+      filter: {}
+      limit: null
+    role: anonymous
+    table:
+      name: rexpool
+      schema: public
+  type: create_select_permission

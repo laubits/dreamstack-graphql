@@ -1,0 +1,3 @@
+- args:
+    sql: DROP TABLE "public"."msigs"
+  type: run_sql

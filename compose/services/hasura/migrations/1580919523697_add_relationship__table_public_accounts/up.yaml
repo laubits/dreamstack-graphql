@@ -1,0 +1,12 @@
+- args:
+    name: msigs_proposals
+    table:
+      name: accounts
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: proposer
+        table:
+          name: msigs
+          schema: public
+  type: create_array_relationship

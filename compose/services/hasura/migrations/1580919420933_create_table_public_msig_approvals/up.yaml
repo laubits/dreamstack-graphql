@@ -1,0 +1,12 @@
+- args:
+    sql: CREATE TABLE "public"."msig_approvals"("proposer" text NOT NULL, "proposal_name"
+      text NOT NULL, "actor" text NOT NULL, "status" text NOT NULL, PRIMARY KEY ("proposer","proposal_name","actor")
+      , FOREIGN KEY ("proposer", "proposal_name") REFERENCES "public"."msigs"("proposer",
+      "proposal_name") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("actor")
+      REFERENCES "public"."accounts"("account_name") ON UPDATE restrict ON DELETE
+      restrict);
+  type: run_sql
+- args:
+    name: msig_approvals
+    schema: public
+  type: add_existing_table_or_view

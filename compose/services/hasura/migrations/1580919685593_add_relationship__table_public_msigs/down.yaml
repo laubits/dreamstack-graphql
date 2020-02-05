@@ -1,0 +1,6 @@
+- args:
+    relationship: approvals
+    table:
+      name: msigs
+      schema: public
+  type: drop_relationship
