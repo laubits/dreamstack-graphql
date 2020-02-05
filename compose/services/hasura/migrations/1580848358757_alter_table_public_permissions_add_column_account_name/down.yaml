@@ -1,0 +1,3 @@
+- args:
+    sql: ALTER TABLE "public"."permissions" DROP COLUMN "account_name";
+  type: run_sql

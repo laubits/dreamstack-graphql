@@ -1,0 +1,16 @@
+- args:
+    permission:
+      allow_aggregations: true
+      columns:
+      - account_name
+      - amount
+      - contract
+      - currency
+      - decimals
+      filter: {}
+      limit: null
+    role: anonymous
+    table:
+      name: balances
+      schema: public
+  type: create_select_permission

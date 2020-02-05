@@ -1,0 +1,6 @@
+- args:
+    sql: alter table "public"."permissions" drop constraint "permissions_pkey";
+  type: run_sql
+- sql: "alter table \"public\".\"permissions\"\n    add constraint \"permissions_pkey\"
+    \n    primary key ( \"perm_name\" );"
+  type: run_sql

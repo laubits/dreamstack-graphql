@@ -1,0 +1,14 @@
+- args:
+    name: accounts
+    table:
+      name: permissions
+      schema: public
+    using:
+      manual_configuration:
+        column_mapping:
+          account_name: account_name
+          perm_name: perm_name
+        remote_table:
+          name: auth_acc
+          schema: public
+  type: create_array_relationship

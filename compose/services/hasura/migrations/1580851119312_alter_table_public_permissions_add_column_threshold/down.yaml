@@ -1,0 +1,3 @@
+- args:
+    sql: ALTER TABLE "public"."permissions" DROP COLUMN "threshold";
+  type: run_sql

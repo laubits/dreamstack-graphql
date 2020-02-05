@@ -1,0 +1,12 @@
+- args:
+    name: balances
+    table:
+      name: accounts
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: account_name
+        table:
+          name: balances
+          schema: public
+  type: create_array_relationship

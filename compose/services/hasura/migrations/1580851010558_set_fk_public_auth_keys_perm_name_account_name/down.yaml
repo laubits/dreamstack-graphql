@@ -1,0 +1,7 @@
+- args:
+    sql: "\n          alter table \"public\".\"auth_keys\" drop constraint \"auth_keys_perm_name_account_name_fkey\",\n
+      \         add constraint \"auth_keys_account_name_perm_name_fkey\"\n          foreign
+      key (\"perm_name\", \"account_name\")\n          references \"public\".\"auth\"\n
+      \         (\"perm_name\", \"account_name\")\n          on update restrict\n
+      \         on delete restrict;\n        "
+  type: run_sql

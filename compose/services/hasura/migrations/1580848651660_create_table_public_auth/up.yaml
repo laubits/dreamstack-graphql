@@ -1,0 +1,9 @@
+- args:
+    sql: CREATE TABLE "public"."auth"("account_name" text NOT NULL, "perm_name" text
+      NOT NULL, "threshold" integer NOT NULL, PRIMARY KEY ("account_name","perm_name")
+      );
+  type: run_sql
+- args:
+    name: auth
+    schema: public
+  type: add_existing_table_or_view

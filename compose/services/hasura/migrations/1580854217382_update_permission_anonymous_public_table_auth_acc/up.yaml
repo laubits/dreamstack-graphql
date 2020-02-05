@@ -1,0 +1,15 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - account_name
+      - actor
+      - perm_name
+      - weight
+      filter: {}
+      limit: null
+    role: anonymous
+    table:
+      name: auth_acc
+      schema: public
+  type: create_select_permission

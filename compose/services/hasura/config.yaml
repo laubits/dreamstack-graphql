@@ -1,0 +1,2 @@
+endpoint: http://localhost:8085 # host machine port
+admin_secret: mysecretaccesskey

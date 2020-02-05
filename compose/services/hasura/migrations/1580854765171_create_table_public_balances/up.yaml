@@ -1,0 +1,11 @@
+- args:
+    sql: CREATE TABLE "public"."balances"("currency" text NOT NULL, "amount" float8
+      NOT NULL, "contract" text NOT NULL, "decimals" int2 NOT NULL, "account_name"
+      text NOT NULL, PRIMARY KEY ("account_name","contract","currency") , FOREIGN
+      KEY ("account_name") REFERENCES "public"."accounts"("account_name") ON UPDATE
+      restrict ON DELETE restrict);
+  type: run_sql
+- args:
+    name: balances
+    schema: public
+  type: add_existing_table_or_view

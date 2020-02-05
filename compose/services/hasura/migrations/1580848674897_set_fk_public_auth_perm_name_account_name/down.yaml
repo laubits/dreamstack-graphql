@@ -1,0 +1,4 @@
+- args:
+    sql: "\n          alter table \"public\".\"auth\" drop constraint \"auth_perm_name_account_name_fkey\"\n
+      \     "
+  type: run_sql

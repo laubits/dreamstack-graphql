@@ -13,4 +13,7 @@ start: scripts/start.sh
 restart: scripts/restart.sh
 	./scripts/restart.sh
 
+hasura: scripts/hasura.sh
+	./scripts/hasura.sh
+
 FORCE:

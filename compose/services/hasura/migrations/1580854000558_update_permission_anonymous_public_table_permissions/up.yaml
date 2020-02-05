@@ -1,0 +1,14 @@
+- args:
+    permission:
+      allow_aggregations: false
+      columns:
+      - parent
+      - perm_name
+      - threshold
+      filter: {}
+      limit: null
+    role: anonymous
+    table:
+      name: permissions
+      schema: public
+  type: create_select_permission

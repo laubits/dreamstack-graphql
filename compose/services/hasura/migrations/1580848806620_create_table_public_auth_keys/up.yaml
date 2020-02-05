@@ -1,0 +1,11 @@
+- args:
+    sql: CREATE TABLE "public"."auth_keys"("account_name" text NOT NULL, "perm_name"
+      text NOT NULL, "actor" text NOT NULL, "weight" integer NOT NULL, PRIMARY KEY
+      ("account_name","perm_name","actor") , FOREIGN KEY ("account_name", "perm_name")
+      REFERENCES "public"."auth"("account_name", "perm_name") ON UPDATE restrict ON
+      DELETE restrict);
+  type: run_sql
+- args:
+    name: auth_keys
+    schema: public
+  type: add_existing_table_or_view

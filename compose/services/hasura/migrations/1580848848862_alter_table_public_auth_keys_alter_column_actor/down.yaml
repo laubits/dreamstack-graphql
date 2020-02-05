@@ -1,0 +1,6 @@
+- args:
+    sql: COMMENT ON COLUMN "public"."auth_keys"."actor" IS E'null'
+  type: run_sql
+- args:
+    sql: alter table "public"."auth_keys" rename column "key" to "actor";
+  type: run_sql

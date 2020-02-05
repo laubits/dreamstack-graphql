@@ -1,0 +1,3 @@
+- args:
+    sql: DROP TABLE "public"."auth_keys"
+  type: run_sql
