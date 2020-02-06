@@ -31,5 +31,11 @@
     "husky": "^4.2.1",
     "lint-staged": "^10.0.4",
     "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "cross-fetch": "^3.0.4",
+    "eosjs": "^20.0.3",
+    "massive": "^6.1.4",
+    "rxjs": "^6.5.4"
   }
 }

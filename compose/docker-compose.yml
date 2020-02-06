@@ -97,26 +97,26 @@ services:
       VIRTUAL_HOST: pgweb.local.telosdreamstack.io
       VIRTUAL_PORT: 8081
 
-  # rxdemux:
-  #   container_name: dreamstack_rxdemux
-  #   image: dreamstack/rxdemux
-  #   build:
-  #     context: ./services/rxdemux
-  #     dockerfile: Dockerfile
-  #   volumes:
-  #     - ./services/demux:/opt/application  # mount demux service folder
-  #     - /opt/application/node_modules # prevents host/container conflicts
-  #   environment:
-  #     DB_HOST: postgres
-  #     DB_PORT: 5432
-  #     DB_NAME: postgres
-  #     DB_USER: user
-  #     DB_PASSWORD: pass
-  #     CHRONICLE_WS: wss://telos.spectrumeos.io/streaming
-  #     WAIT_HOSTS: postgres:5432
-  #     WAIT_HOSTS_TIMEOUT: 60
-  #   depends_on:
-  #     - postgres
+  rxdemux:
+    container_name: dreamstack_rxdemux
+    image: dreamstack/rxdemux
+    build:
+      context: ./services/rxdemux
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/rxdemux:/opt/application  # mount demux service folder
+      - /opt/application/node_modules # prevents host/container conflicts
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: postgres
+      DB_USER: user
+      DB_PASSWORD: pass
+      CHRONICLE_WS: wss://telos.spectrumeos.io/streaming
+      WAIT_HOSTS: postgres:5432
+      WAIT_HOSTS_TIMEOUT: 60
+    depends_on:
+      - postgres
 
   nginx:
     container_name: dreamstack_nginx

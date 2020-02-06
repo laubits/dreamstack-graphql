@@ -1,14 +1,15 @@
-import * as http from 'http'
+import { interval } from 'rxjs'
+import { take } from 'rxjs/operators'
+import fetch from 'cross-fetch'
+import { JsonRpc } from 'eosjs'
 
-const hostname = process.env.HOSTNAME || '0.0.0.0'
-const port = Number(process.env.PORT || 3000)
+// Instantiate a new JsonRpc object, with the Network Api Uri, and a request object
+const rpc = new JsonRpc('https://api.kylin.alohaeos.com', { fetch })
+// Request the balance, passing in the token contract, the account name, and the token symbol
+rpc.get_currency_balance('eosio.token', 'eospaceioeos', 'EOS').then(balance => console.log(balance))
 
-const server = http.createServer((_req, res) => {
-  res.statusCode = 200
-  res.setHeader('Content-Type', 'text/plain')
-  res.end('Hello World')
-})
+const numbers = interval(1000)
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
+const takeFourNumbers = numbers.pipe(take(4))
+
+takeFourNumbers.subscribe(x => console.log('Next: ', x))
