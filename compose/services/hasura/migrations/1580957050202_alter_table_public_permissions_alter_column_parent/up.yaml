@@ -1,0 +1,6 @@
+- args:
+    sql: ALTER TABLE "public"."permissions" ALTER COLUMN "parent" DROP NOT NULL;
+  type: run_sql
+- args:
+    sql: COMMENT ON COLUMN "public"."permissions"."parent" IS E''
+  type: run_sql
