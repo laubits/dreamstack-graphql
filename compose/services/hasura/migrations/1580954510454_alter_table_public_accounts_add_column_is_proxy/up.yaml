@@ -1,0 +1,3 @@
+- args:
+    sql: ALTER TABLE "public"."accounts" ADD COLUMN "is_proxy" boolean NULL;
+  type: run_sql

@@ -1,0 +1,6 @@
+- args:
+    sql: ALTER TABLE "public"."accounts" ADD COLUMN "is_proxy" int4
+  type: run_sql
+- args:
+    sql: ALTER TABLE "public"."accounts" ALTER COLUMN "is_proxy" DROP NOT NULL
+  type: run_sql
