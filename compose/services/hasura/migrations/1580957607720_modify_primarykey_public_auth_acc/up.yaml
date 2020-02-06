@@ -1,0 +1,7 @@
+- args:
+    sql: alter table "public"."auth_acc" drop constraint "auth_acc_pkey";
+  type: run_sql
+- args:
+    sql: "alter table \"public\".\"auth_acc\"\n    add constraint \"auth_acc_pkey\"
+      \n    primary key ( \"account_name\", \"perm_name\", \"actor\" );"
+  type: run_sql
