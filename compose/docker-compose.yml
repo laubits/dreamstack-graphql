@@ -55,6 +55,7 @@ services:
     image: hasura/graphql-engine:v1.0.0.cli-migrations
     ports:
       - '8085:8080'
+      - '443:443'
     environment:
       HASURA_GRAPHQL_DATABASE_URL: postgres://dreamstack:pass@postgres:5432/dreamstack?sslmode=disable
       HASURA_GRAPHQL_MIGRATIONS_DIR: /migrations

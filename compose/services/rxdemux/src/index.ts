@@ -1,15 +1,47 @@
-import { interval } from 'rxjs'
-import { take } from 'rxjs/operators'
-import fetch from 'cross-fetch'
-import { JsonRpc } from 'eosjs'
+import ligtapi from './light-api'
+import getMassive from './massive-db'
+import { Database } from 'massive'
+import { map } from 'rxjs/operators'
 
-// Instantiate a new JsonRpc object, with the Network Api Uri, and a request object
-const rpc = new JsonRpc('https://api.kylin.alohaeos.com', { fetch })
-// Request the balance, passing in the token contract, the account name, and the token symbol
-rpc.get_currency_balance('eosio.token', 'eospaceioeos', 'EOS').then(balance => console.log(balance))
+const init = async (db: Database) => {
+  ligtapi
+    .pipe(
+      map(({ balances, account }) => {
+        console.log('=================================')
+        console.log(JSON.stringify({ balances, account }))
+        return balances.map(balance => {
+          return {
+            ...balance,
+            account_name: account,
+            decimals: balance.amount.split('.')[1].length,
+          }
+        })
+      }),
+    )
+    .subscribe({
+      async next(data) {
+        try {
+          data.map(async balance => {
+            // it seems massive doesn't support bulk save / upsert anymore ?
+            if ((await db.balances.save(balance)) === null) {
+              await db.balances.insert(balance)
+            }
+          })
+        } catch (error) {
+          console.log(error)
+        }
+      },
+      error(err) {
+        console.error(`something wrong occurred: ${err}`)
+      },
+      complete() {
+        console.log(' ligtapi done')
+      },
+    })
+}
 
-const numbers = interval(1000)
-
-const takeFourNumbers = numbers.pipe(take(4))
-
-takeFourNumbers.subscribe(x => console.log('Next: ', x))
+// get db instance and initialize
+;(async function start() {
+  const db = await getMassive()
+  init(db)
+})()
