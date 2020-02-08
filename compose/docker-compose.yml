@@ -116,11 +116,13 @@ services:
       CHRONICLE_HOST: chronicle
       CHRONICLE_PORT: 443
       CHRONICLE_ACK: 10
-      CHRONICLE_ASYNC: true
-      WAIT_HOSTS: postgres:5432
+      CHRONICLE_ASYNC: 'true'
+      HASURA_ENDPOINT: http://hasura:8080/v1/graphql
+      HASURA_ADMIN_SECRET: mysecretaccesskey
+      WAIT_HOSTS: hasura:8080
       WAIT_HOSTS_TIMEOUT: 60
     depends_on:
-      - postgres
+      - hasura
 
   nginx:
     container_name: dreamstack_nginx

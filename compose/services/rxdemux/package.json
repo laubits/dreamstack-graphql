@@ -39,8 +39,8 @@
   "dependencies": {
     "chronicle-consumer": "^0.0.2",
     "eosjs": "^20.0.3",
+    "graphql-request": "^1.8.2",
     "node-fetch": "^2.6.0",
-    "rxjs": "^6.5.4",
-    "slonik": "^22.2.1"
+    "rxjs": "^6.5.4"
   }
 }
