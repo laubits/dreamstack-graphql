@@ -6,7 +6,7 @@
   "author": "blockmatic.io",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --no-deps --respawn src/index",
+    "dev": "env-cmd ts-node-dev --no-deps --respawn src/index",
     "build": "tsc",
     "lint": "eslint --ignore-path .gitignore \"**/*.+(js|ts|tsx)\"",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|json|ts|tsx)\""
@@ -29,6 +29,7 @@
     "@types/massive": "^5.4.3",
     "@types/node": "^13.5.2",
     "@types/node-fetch": "^2.5.4",
+    "env-cmd": "^10.0.1",
     "eslint": "^6.8.0",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
@@ -38,9 +39,8 @@
   "dependencies": {
     "chronicle-consumer": "^0.0.2",
     "eosjs": "^20.0.3",
-    "jsonrpc2-ws": "^1.0.0-beta18",
-    "massive": "^6.1.4",
     "node-fetch": "^2.6.0",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "slonik": "^22.2.1"
   }
 }

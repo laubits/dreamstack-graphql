@@ -113,7 +113,10 @@ services:
       DB_NAME: postgres
       DB_USER: user
       DB_PASSWORD: pass
-      CHRONICLE_WS: wss://telos.spectrumeos.io/streaming
+      CHRONICLE_HOST: chronicle
+      CHRONICLE_PORT: 443
+      CHRONICLE_ACK: 10
+      CHRONICLE_ASYNC: true
       WAIT_HOSTS: postgres:5432
       WAIT_HOSTS_TIMEOUT: 60
     depends_on:
