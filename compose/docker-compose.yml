@@ -86,14 +86,14 @@ services:
     environment:
       - DATA_DIR=./data
       - MODE=scan
-      - HOST=mainnet.telosusa.io #ip address or hostname of nodeos with state-history plogin
-      - PORT=8890 #port number of state history plugin
+      - HOST=sfo01.net.light.xeos.me #  mainnet.telosusa.io #ip address or hostname of nodeos with state-history plogin
+      - PORT=8081 # 8890 #port number of state history plugin
       - WS_HOST=rxdemux # ip address or hostname json's consumer
       - WS_PORT=8899 # port number of json's consumer
       - SKIP_BLOCK_EVENTS=false
       - SKIP_TABLE_DELTAS=false
       - SKIP_TRACES=false
-      - BIN_HEADER=false
+      - BIN_HEADER=true
       - EXP_WS_PATH=/
       - EXP_WS_MAX_QEUEU=10000
       - IRREVERSIBLE_ONLY=false
