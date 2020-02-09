@@ -1,0 +1,14 @@
+- args:
+    name: approvals
+    table:
+      name: msigs
+      schema: public
+    using:
+      manual_configuration:
+        column_mapping:
+          proposal_name: proposal_name
+          proposer: proposer
+        remote_table:
+          name: msig_approvals
+          schema: public
+  type: create_array_relationship

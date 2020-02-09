@@ -1,0 +1,3 @@
+- args:
+    sql: DROP TABLE "public"."rexbal"
+  type: run_sql

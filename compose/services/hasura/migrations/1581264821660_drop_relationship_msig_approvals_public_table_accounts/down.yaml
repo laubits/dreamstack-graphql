@@ -1,0 +1,12 @@
+- args:
+    name: msig_approvals
+    table:
+      name: accounts
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: actor
+        table:
+          name: msig_approvals
+          schema: public
+  type: create_array_relationship

@@ -1,0 +1,12 @@
+- args:
+    name: rexbal
+    table:
+      name: accounts
+      schema: public
+    using:
+      foreign_key_constraint_on:
+        column: owner
+        table:
+          name: rexbal
+          schema: public
+  type: create_array_relationship
