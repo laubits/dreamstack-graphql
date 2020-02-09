@@ -17,11 +17,17 @@ const chronicleOptions = {
 const chronicleServer = new ConsumerServer(chronicleOptions)
 
 export const fork$ = new Observable<{}>((subscriber: Subscriber<{}>) => {
-  chronicleServer.on('fork', (data: {}) => subscriber.next(data))
+  chronicleServer.on('fork', (data: {}) => {
+    console.log(data)
+    subscriber.next(data)
+  })
 })
 
 export const tx$ = new Observable<{}>((subscriber: Subscriber<{}>) => {
-  chronicleServer.on('tx', (data: {}) => subscriber.next(data))
+  chronicleServer.on('tx', (data: {}) => {
+    console.log(data)
+    subscriber.next(data)
+  })
 })
 
 chronicleServer.on('connected', () => console.log('connected'))
