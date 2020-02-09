@@ -1,3 +1,2 @@
-# EOSIO Node with Chronicle Plugin
+# Chronicle service
 
-https://github.com/EOSChronicleProject/eos-chronicle

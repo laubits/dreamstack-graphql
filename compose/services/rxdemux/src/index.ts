@@ -1,30 +1,32 @@
-// import { fork$, tx$ } from './chronicle'
-import hasura from './hasura'
+import { fork$, tx$ } from './chronicle'
+// import hasura from './hasura'
 
-const QUERY = `
-query MyQuery {
-  accounts {
-    account_name
-  }
-}
-`
-const getData = async () => {
-  try {
-    const data = await hasura.request(QUERY)
-    console.log(JSON.stringify(data, undefined, 2))
-  } catch (error) {
-    console.log(error)
-  }
-}
+tx$.subscribe((data: {}) => {
+  console.log('=== tx ===')
+  console.log(data)
+})
 
-getData()
+fork$.subscribe((data: {}) => {
+  console.log('=== fork ===')
+  console.log(data)
+})
 
-// tx$.subscribe((data: {}) => {
-//   console.log('=== tx ===')
-//   console.log(data)
-// })
+// ---- hasura connection test  ----
 
-// fork$.subscribe((data: {}) => {
-//   console.log('=== fork ===')
-//   console.log(data)
-// })
+// const QUERY = `
+// query MyQuery {
+//   accounts {
+//     account_name
+//   }
+// }
+// `
+// const getData = async () => {
+//   try {
+//     const data = await hasura.request(QUERY)
+//     console.log(JSON.stringify(data, undefined, 2))
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// getData()

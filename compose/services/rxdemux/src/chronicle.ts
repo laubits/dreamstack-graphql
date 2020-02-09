@@ -1,14 +1,19 @@
 import ConsumerServer from 'chronicle-consumer'
 import { Observable, Subscriber } from 'rxjs'
 
-const { CHRONICLE_HOST, CHRONICLE_PORT, CHRONICLE_ACK, CHRONICLE_ASYNC } = process.env
+const { CHRONICLE_CONSUMER_HOST, CHRONICLE_CONSUMER_PORT, CHRONICLE_CONSUMER_ACK, CHRONICLE_CONSUMER_ASYNC } = process.env
 
-if (!CHRONICLE_HOST) throw new Error('Missing CHRONICLE_HOST env var')
-if (!CHRONICLE_PORT) throw new Error('Missing CHRONICLE_PORT env var')
-if (!CHRONICLE_ACK) throw new Error('Missing CHRONICLE_ACK env var')
-if (!CHRONICLE_ASYNC) throw new Error('Missing CHRONICLE_ASYNC env var')
+if (!CHRONICLE_CONSUMER_HOST) throw new Error('Missing CHRONICLE_CONSUMER_HOST env var')
+if (!CHRONICLE_CONSUMER_PORT) throw new Error('Missing CHRONICLE_CONSUMER_PORT env var')
+if (!CHRONICLE_CONSUMER_ACK) throw new Error('Missing CHRONICLE_CONSUMER_ACK env var')
+if (!CHRONICLE_CONSUMER_ASYNC) throw new Error('Missing CHRONICLE_CONSUMER_ASYNC env var')
 
-const chronicleOptions = { host: CHRONICLE_HOST, port: CHRONICLE_PORT, ackEvery: CHRONICLE_ACK, async: CHRONICLE_ASYNC }
+const chronicleOptions = {
+  host: CHRONICLE_CONSUMER_HOST,
+  port: CHRONICLE_CONSUMER_PORT,
+  ackEvery: CHRONICLE_CONSUMER_ACK,
+  async: CHRONICLE_CONSUMER_ASYNC,
+}
 const chronicleServer = new ConsumerServer(chronicleOptions)
 
 export const fork$ = new Observable<{}>((subscriber: Subscriber<{}>) => {
