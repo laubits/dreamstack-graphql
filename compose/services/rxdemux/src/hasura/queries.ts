@@ -21,3 +21,11 @@ export const INSERT_BALANCES = `
     }
   }
 `
+
+export const UPDATE_BALANCE = `
+  mutation UpdateBalances($account_name: String, $currency: String, $amount: float8) {
+    update_balances(where: {account_name: {_eq: $account_name}, currency: {_eq: $currency}}, _set: {amount: $amount}) {
+      affected_rows
+    }
+  }
+`

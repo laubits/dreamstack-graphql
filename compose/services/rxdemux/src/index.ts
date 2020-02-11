@@ -1,9 +1,28 @@
+import randomnItem from 'random-item'
+import randomFloat from 'random-float'
 import { fork$, tx$ } from './chronicle'
-// import hasura from './hasura'
+import { accounts } from './seeds/accounts'
+import { randomAmount } from './utils'
+import hasura from './hasura/client'
+import { UPDATE_BALANCE } from './hasura/queries'
 
-tx$.subscribe((data: {}) => {
+const updateBalance = async (variables: {}) => {
+  try {
+    console.log('===> updating balance', variables)
+    const response = await hasura.request(UPDATE_BALANCE, variables)
+    console.log(response)
+  } catch ({ response: { errors } }) {
+    console.log(errors)
+    process.exit()
+  }
+}
+
+tx$.subscribe(async (data: {}) => {
   console.log('=== tx ===')
-  console.log(data)
+  console.log(data, randomFloat(10000))
+  const { account_name } = randomnItem(accounts)
+  await updateBalance({ account_name, currency: 'TLOS', amount: randomAmount() })
+  await updateBalance({ account_name, currency: 'DREAM', amount: randomAmount() })
 })
 
 fork$.subscribe((data: {}) => {
@@ -11,22 +30,17 @@ fork$.subscribe((data: {}) => {
   console.log(data)
 })
 
-// ---- hasura connection test  ----
+// EG. different streams by conditions
 
-// const QUERY = `
-// query MyQuery {
-//   accounts {
-//     account_name
-//   }
-// }
-// `
-// const getData = async () => {
-//   try {
-//     const data = await hasura.request(QUERY)
-//     console.log(JSON.stringify(data, undefined, 2))
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
+// const somethings$ = source$
+//   .filter(isSomething)
+//   .do(something):
 
-// getData()
+// const differentThings$ = source$
+//   .filter(!isSomething)
+//   .do(aDifferentThing):
+
+// // merge them together
+// const onlyTheRightThings$ = somethings$
+//   .merge(differentThings$)
+//   .do(correctThings)
