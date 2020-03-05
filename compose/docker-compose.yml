@@ -78,30 +78,6 @@ services:
       VIRTUAL_HOST: pgweb.local.telosdreamstack.io
       VIRTUAL_PORT: 8081
 
-  chronicle:
-    image: eostribe/chronicle
-    container_name: dreamstack_chronicle
-    volumes:
-      - ./services/chronicle:/opt/data
-    environment:
-      - DATA_DIR=./data
-      - MODE=scan
-      - HOST=sfo01.net.light.xeos.me #  mainnet.telosusa.io #ip address or hostname of nodeos with state-history plogin
-      - PORT=8081 # 8890 #port number of state history plugin
-      - WS_HOST=rxdemux # ip address or hostname json's consumer
-      - WS_PORT=8899 # port number of json's consumer
-      - SKIP_BLOCK_EVENTS=false
-      - SKIP_TABLE_DELTAS=false
-      - SKIP_TRACES=false
-      - BIN_HEADER=true
-      - EXP_WS_PATH=/
-      - EXP_WS_MAX_QEUEU=10000
-      - IRREVERSIBLE_ONLY=false
-      - WAIT_HOSTS= rxdemux:8899
-      - WAIT_HOSTS_TIMEOUT=60
-    depends_on:
-      - rxdemux
-
   rxdemux:
     container_name: dreamstack_rxdemux
     image: dreamstack/rxdemux
@@ -112,12 +88,9 @@ services:
       - ./services/rxdemux:/opt/application  # mount demux service folder
       - /opt/application/node_modules # prevents host/container conflicts
     environment:
-      CHRONICLE_CONSUMER_HOST: 0.0.0.0
-      CHRONICLE_CONSUMER_PORT: 8899
-      CHRONICLE_CONSUMER_ACK: 10
-      CHRONICLE_CONSUMER_ASYNC: 'true'
       HASURA_ENDPOINT: http://hasura:8080/v1/graphql
       HASURA_ADMIN_SECRET: mysecretaccesskey
+      EOSIO_SOCKET_ENDPOINT: ws://mainnet.telosusa.io:8890
       WAIT_HOSTS: hasura:8080
       WAIT_HOSTS_TIMEOUT: 60
     depends_on:

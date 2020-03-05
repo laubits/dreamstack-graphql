@@ -1,4 +1,9 @@
-require('./accounts')
-require('./permissions')
-require('./balances')
+const runSeeds = () => {
+  require('./accounts')
+  require('./permissions')
+  require('./balances')
+}
+
+runSeeds()
+
 export {}
