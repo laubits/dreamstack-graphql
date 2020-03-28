@@ -27,7 +27,6 @@ A realtime GraphQL framework for EOSIO dApps.
 - Microfork handling on the backend, subscribe to state not to deltas.
 - Supports ad-hoc external graph stitching.
 - Supports ad-hoc offchain graphql resolvers.
-- Blockmatic code style conventions.
 
 ## TELOS
 
@@ -101,7 +100,7 @@ Read the [contributing guidelines](https://developers.blockmatic.io) for details
 
 ## Blockmatic
 
-Blockmatic is building robust ecosystem of people and tools for development of blockchain applications.
+Blockmatic is building a robust ecosystem of people and tools for the development of blockchain applications.
 
 [blockmatic.io](https://blockmatic.io)
 
