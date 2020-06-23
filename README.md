@@ -88,7 +88,7 @@ This is easiest way to deploy the DreamStack GraphQL engine.
 
 See [compose/README.md](./compose/README.md) for more detail.
 
-## Telos DreamStack
+## TELOS DreamStack
 
 This repository is part of the TELOS DreamStack Project which provides a set of guidelines, tools and starters to speed up dApp development following best practices for security, performance and maintainability. The project is maintained by [blockmatic.io](https://blockmatic.io) and it's sponsored by the TELOS token holders through the [Telos Works -Telos Worker Proposal System](https://medium.com/telos-foundation/telos-user-guide-understanding-worker-proposals-ef5df8ee2a17)
 
