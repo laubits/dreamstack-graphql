@@ -28,11 +28,6 @@ A realtime GraphQL framework for EOSIO dApps.
 - Supports ad-hoc external graph stitching.
 - Supports ad-hoc offchain graphql resolvers.
 
-## TELOS
-
-Best in class C++ EOSIO protocol technology providing fast, scalable and eco-freindly blockchain augmented by a growing library of Telos services and innovations. Free accounts, work proposals, dapp grants, decentralized exchange, dstor, bancor protocol, telos community and foundation.
-
-[Learn more](https://docs.telosdreamstack.io/smart-contracts/telos-blockchain)
 
 ## Architecture
 
@@ -90,7 +85,7 @@ See [compose/README.md](./compose/README.md) for more detail.
 
 ## TELOS DreamStack
 
-This repository is part of the TELOS DreamStack Project which provides a set of guidelines, tools and starters to speed up dApp development following best practices for security, performance and maintainability. The project is maintained by [blockmatic.io](https://blockmatic.io) and it's sponsored by the TELOS token holders through the [Telos Works -Telos Worker Proposal System](https://medium.com/telos-foundation/telos-user-guide-understanding-worker-proposals-ef5df8ee2a17)
+This repository is part of the TELOS DreamStack Project which provides a set of guidelines, tools and starters to speed up dApp development following best practices for security, performance and maintainability of your application.
 
 Learn more https://telosdreamstack.io
 
